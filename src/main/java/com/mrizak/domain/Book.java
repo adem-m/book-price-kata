@@ -1,16 +1,14 @@
-package com.mrizak;
+package com.mrizak.domain;
 
-public class Book {
+class Book {
     private double price;
-    private Title title;
+    private final Title title;
+    private final Saga saga;
 
-    private Book(Title title, double price) {
+    public Book(Title title, double price, Saga saga) {
         this.title = title;
         this.price = price;
-    }
-
-    public static Book of(Title title) {
-        return new Book(title, 8);
+        this.saga = saga;
     }
 
     public double getPrice() {
@@ -23,5 +21,9 @@ public class Book {
 
     public void applyDiscount(int discount) {
         this.price -= (this.price * discount) / 100;
+    }
+
+    public Saga getSaga() {
+        return saga;
     }
 }

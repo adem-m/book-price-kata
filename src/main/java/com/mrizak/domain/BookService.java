@@ -1,4 +1,4 @@
-package com.mrizak;
+package com.mrizak.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +7,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class BookService {
-    private final Map<Integer, Integer> discounts;
+    private final Map<Saga, Map<Integer, Integer>> discounts;
 
-    public BookService(Map<Integer, Integer> discounts) {
+    public BookService(Map<Saga, Map<Integer, Integer>> discounts) {
         this.discounts = discounts;
     }
 
@@ -34,7 +34,8 @@ public class BookService {
     }
 
     private void applyDiscount(List<Book> distinctBooks) {
-        Integer discount = discounts.get(distinctBooks.size());
+        Map<Integer, Integer> sagaDiscounts = discounts.get(distinctBooks.get(0).getSaga());
+        Integer discount = sagaDiscounts.get(distinctBooks.size());
         for (Book book : distinctBooks) {
             book.applyDiscount(discount);
         }

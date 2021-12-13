@@ -1,4 +1,4 @@
-package com.mrizak;
+package com.mrizak.domain;
 
 import static org.junit.Assert.assertTrue;
 
